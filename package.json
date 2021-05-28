@@ -2,21 +2,16 @@
   "name": "netflix-backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gregoriofracassi/netflix-backend.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -e js -r dotenv/config ./src/server.js",
+    "start": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gregoriofracassi/netflix-backend/issues"
-  },
-  "homepage": "https://github.com/gregoriofracassi/netflix-backend#readme",
   "dependencies": {
     "cloudinary": "^1.25.1",
     "cors": "^2.8.5",
@@ -27,6 +22,7 @@
     "http-errors": "^1.8.0",
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^4.0.0",
+    "node-fetch": "^2.6.1",
     "uniqid": "^5.3.0",
     "validator": "^13.6.0"
   },
