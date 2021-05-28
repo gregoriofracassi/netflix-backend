@@ -4,6 +4,7 @@ import { bodyValidator } from "./validation.js"
 import { validationResult } from "express-validator"
 import createError from "http-errors"
 import { getMedia, writeMedia } from "../lib/fs-tools.js"
+import fetch from "node-fetch"
 
 const mediaRouter = express.Router()
 
@@ -21,16 +22,17 @@ mediaRouter.get("/", async (req, res, next) => {
           let response = await fetch(
             `http://www.omdbapi.com/?i=tt3896198&apikey=c65cdbe8&s=${req.query.title}`
           )
-
           if (response.ok) {
             let data = await response.json()
-            let last6 = data.Search.slice(-6)
-            this.setState({ gallery: last6 })
-            console.log(last6)
+            media.push(...data.Search)
+            await writeMedia(media)
+            res.send(data)
           }
         } catch (error) {
           console.log(error)
         }
+      } else {
+        res.send(filteredMedia)
       }
     } else {
       res.send(media)
